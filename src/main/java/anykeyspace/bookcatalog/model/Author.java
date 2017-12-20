@@ -24,7 +24,7 @@ public class Author {
 
     private String country;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "author", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Book> books;
 
     // для hibernate
@@ -34,6 +34,18 @@ public class Author {
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", version=" + version +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", country='" + country + '\'' +
+                ", books=" + books +
+                '}';
     }
 
     public Integer getId() {

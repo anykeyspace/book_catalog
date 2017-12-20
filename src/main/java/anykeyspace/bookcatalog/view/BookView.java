@@ -1,47 +1,22 @@
-package anykeyspace.bookcatalog.model;
+package anykeyspace.bookcatalog.view;
 
-import javax.persistence.*;
+public class BookView {
 
-@Entity
-public class Book {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
-
-    /**
-     * Служебное поле hibernate
-     */
-    @Version
-    private Integer version;
-
-    @Basic(optional = false)
     private String name;
 
     private int year;
 
     private String genre;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "author_id")
-    private Author author;
+    private AuthorView author;
 
     private String description;
 
-    // для hibernate
-    public Book() {
+    // for jackson
+    public BookView() {
     }
 
-    public Book(String name) {
-        this.name = name;
-    }
-
-    public Book(String name, Author author) {
-        this.name = name;
-        this.author = author;
-    }
-
-    public Book(String name, int year, String genre, Author author, String description) {
+    public BookView(String name, int year, String genre, AuthorView author, String description) {
         this.name = name;
         this.year = year;
         this.genre = genre;
@@ -51,25 +26,13 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "BookView{" +
                 "name='" + name + '\'' +
                 ", year=" + year +
                 ", genre='" + genre + '\'' +
-                ", author=" + author +
+                ", author='" + author + '\'' +
                 ", description='" + description + '\'' +
                 '}';
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     public String getName() {
@@ -96,11 +59,11 @@ public class Book {
         this.genre = genre;
     }
 
-    public Author getAuthor() {
+    public AuthorView getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(AuthorView author) {
         this.author = author;
     }
 
