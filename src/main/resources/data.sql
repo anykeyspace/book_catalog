@@ -1,0 +1,1 @@
+INSERT INTO Author (version, first_name, last_name, country) VALUES (0, 'Peter', 'Wats', 'USA');

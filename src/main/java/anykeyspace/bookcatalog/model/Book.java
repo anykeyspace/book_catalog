@@ -2,7 +2,7 @@ package anykeyspace.bookcatalog.model;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Book")
 public class Book {
 
     @Id
