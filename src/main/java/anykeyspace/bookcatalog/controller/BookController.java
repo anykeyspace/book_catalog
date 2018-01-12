@@ -12,14 +12,14 @@ import java.util.List;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
-@RequestMapping(value = "/", produces = APPLICATION_JSON_VALUE)
-public class RootController {
+@RequestMapping(value = "/api", produces = APPLICATION_JSON_VALUE)
+public class BookController {
 
     private final BookService bookService;
     private final AuthorService authorService;
 
     @Autowired
-    public RootController(BookService bookService, AuthorService authorService) {
+    public BookController(BookService bookService, AuthorService authorService) {
         this.bookService = bookService;
         this.authorService = authorService;
     }
