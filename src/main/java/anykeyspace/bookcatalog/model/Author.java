@@ -16,6 +16,9 @@ public class Author {
     @Version
     private Integer version;
 
+    @Column(unique = true)
+    private Integer authorNumber;
+
     @Basic(optional = false)
     private String firstName;
 
@@ -31,7 +34,8 @@ public class Author {
     public Author() {
     }
 
-    public Author(String firstName, String lastName) {
+    public Author(Integer authorNumber, String firstName, String lastName) {
+        this.authorNumber = authorNumber;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -39,8 +43,7 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
-                ", version=" + version +
+                "authorNumber=" + authorNumber +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", country='" + country + '\'' +
@@ -58,6 +61,14 @@ public class Author {
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    public Integer getAuthorNumber() {
+        return authorNumber;
+    }
+
+    public void setAuthorNumber(Integer authorNumber) {
+        this.authorNumber = authorNumber;
     }
 
     public String getFirstName() {

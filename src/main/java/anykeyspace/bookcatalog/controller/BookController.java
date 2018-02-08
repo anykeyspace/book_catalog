@@ -35,13 +35,27 @@ public class BookController {
     }
 
     /**
-     * Add book
+     * Add/update book
      *
      * @param view
      */
     @PostMapping("/book")
-    public void addBook(@RequestBody BookView view) {
-        bookService.addBook(view);
+    public void addBook(@RequestBody BookView view,
+                        @RequestParam(value = "type", required = false, defaultValue = "new") String type) {
+
+        switch (type) {
+            case "new":
+                bookService.addBook(view);
+                break;
+
+            case "update":
+                bookService.updateBook(view);
+                break;
+
+            default:
+                bookService.addBook(view);
+                break;
+        }
     }
 
     /**
@@ -52,6 +66,16 @@ public class BookController {
     @GetMapping("/book")
     public List<BookView> getAllBooks() {
         return bookService.loadAllBooks();
+    }
+
+    /**
+     * Add author
+     *
+     * @param view
+     */
+    @PostMapping("/author")
+    public void addAuthor(@RequestBody AuthorView view) {
+        authorService.addAuthor(view);
     }
 
     /**

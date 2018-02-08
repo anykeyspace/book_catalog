@@ -4,17 +4,20 @@ import anykeyspace.bookcatalog.model.Author;
 
 import java.util.List;
 
+/**
+ * Interface describes DAO layer for Author entity
+ */
 public interface AuthorDAO {
 
     /**
-     * Получить все объекты Author
+     * Load list of all Author objects from DB
      *
      * @return
      */
     List<Author> loadAll();
 
     /**
-     * Сохранить Author
+     * Save Author object in DB
      *
      * @param author
      */

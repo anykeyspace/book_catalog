@@ -3,13 +3,15 @@ package anykeyspace.bookcatalog.service.impl;
 import anykeyspace.bookcatalog.dao.BookDAO;
 import anykeyspace.bookcatalog.model.Book;
 import anykeyspace.bookcatalog.service.BookService;
+import anykeyspace.bookcatalog.service.ViewConverter;
 import anykeyspace.bookcatalog.view.BookView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 public class BookServiceImpl implements BookService {
 
     private final BookDAO dao;
+    private final Logger LOGGER = LoggerFactory.getLogger(BookServiceImpl.class);
 
     @Autowired
     public BookServiceImpl(BookDAO dao) {
@@ -31,8 +34,18 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional
     public void addBook(BookView view) {
-        Book book = new Book(view.getName());
+        Book book = ViewConverter.bookFromView(view);
         dao.save(book);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional
+    public void updateBook(BookView view) {
+        Book book = ViewConverter.bookFromView(view);
+        dao.update(book);
     }
 
     /**
@@ -43,19 +56,8 @@ public class BookServiceImpl implements BookService {
     public List<BookView> loadAllBooks() {
         List<Book> bookList = dao.loadAll();
 
-        Function<Book, BookView> mapBook = book -> {
-            BookView view = new BookView();
-            view.setName(book.getName());
-//            view.setAuthor();
-            view.setGenre(book.getGenre());
-            view.setYear(book.getYear());
-            view.setDescription(book.getDescription());
-
-            return view;
-        };
-
         return bookList.stream()
-                .map(mapBook)
+                .map(ViewConverter::bookToView)
                 .collect(Collectors.toList());
     }
 }

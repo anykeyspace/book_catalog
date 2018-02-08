@@ -10,6 +10,13 @@ import java.util.List;
 public interface AuthorService {
 
     /**
+     * Author add method
+     *
+     * @param view
+     */
+    void addAuthor(AuthorView view);
+
+    /**
      * All authors load method
      *
      * @return

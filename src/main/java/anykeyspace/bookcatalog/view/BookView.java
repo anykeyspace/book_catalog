@@ -2,14 +2,11 @@ package anykeyspace.bookcatalog.view;
 
 public class BookView {
 
+    private int bookNumber;
     private String name;
-
     private int year;
-
     private String genre;
-
     private AuthorView author;
-
     private String description;
 
     // for jackson
@@ -27,12 +24,21 @@ public class BookView {
     @Override
     public String toString() {
         return "BookView{" +
-                "name='" + name + '\'' +
+                "bookNumber=" + bookNumber +
+                ", name='" + name + '\'' +
                 ", year=" + year +
                 ", genre='" + genre + '\'' +
-                ", author='" + author + '\'' +
+                ", author=" + author +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public int getBookNumber() {
+        return bookNumber;
+    }
+
+    public void setBookNumber(int bookNumber) {
+        this.bookNumber = bookNumber;
     }
 
     public String getName() {

@@ -17,6 +17,13 @@ public interface BookService {
     void addBook(BookView view);
 
     /**
+     * Update Book method
+     *
+     * @param view
+     */
+    void updateBook(BookView view);
+
+    /**
      * All books load method
      *
      * @return

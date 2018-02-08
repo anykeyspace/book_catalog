@@ -15,6 +15,9 @@ public class Book {
     @Version
     private Integer version;
 
+    @Column(unique = true)
+    private Integer bookNumber;
+
     @Basic(optional = false)
     private String name;
 
@@ -32,27 +35,22 @@ public class Book {
     public Book() {
     }
 
-    public Book(String name) {
+    public Book(Integer bookNumber, String name) {
+        this.bookNumber = bookNumber;
         this.name = name;
     }
 
-    public Book(String name, Author author) {
+    public Book(Integer bookNumber, String name, Author author) {
+        this.bookNumber = bookNumber;
         this.name = name;
         this.author = author;
-    }
-
-    public Book(String name, int year, String genre, Author author, String description) {
-        this.name = name;
-        this.year = year;
-        this.genre = genre;
-        this.author = author;
-        this.description = description;
     }
 
     @Override
     public String toString() {
         return "Book{" +
-                "name='" + name + '\'' +
+                "bookNumber=" + bookNumber +
+                ", name='" + name + '\'' +
                 ", year=" + year +
                 ", genre='" + genre + '\'' +
                 ", author=" + author +
@@ -70,6 +68,14 @@ public class Book {
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+
+    public Integer getBookNumber() {
+        return bookNumber;
+    }
+
+    public void setBookNumber(Integer bookNumber) {
+        this.bookNumber = bookNumber;
     }
 
     public String getName() {
