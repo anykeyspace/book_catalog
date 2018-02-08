@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Book Catalog</title>
+    <link rel="stylesheet" href="codebase/dhtmlxgrid.css">
+    <script src="codebase/dhtmlxgrid.js"></script>
+    <script type="text/javascript" src="codebase/prototype.js"></script>
+</head>
+<body>
+<div>Authors:</div>
+
+<button onclick="addAuthor()">Add author</button>
+<button onclick="removeAuthor()">Remove author</button>
+<div></div>
+
+<button onclick="loadAuthors()">Load all authors</button>
+<button onclick="loadAuthorsPrototype()">Load all authors prototype</button>
+
+<div id="author_grid_container" style="width: 800px; height: 400px;"></div>
+
+<script src="scripts/authors.js"></script>
+
+
+<div>Books:</div>
+
+<button onclick="addBook()">Add book</button>
+<button onclick="removeBook()">Remove book</button>
+<div></div>
+
+<button onclick="loadBooks()">Load all books</button>
+<button onclick="saveBook()">Save new book</button>
+
+<div id="book_grid_container" style="width: 800px; height: 400px"></div>
+
+<script src="scripts/books.js"></script>
+
+</body>
+</html>
